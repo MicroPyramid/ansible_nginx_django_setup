@@ -1,2 +1,26 @@
 ---
 # tasks file for nginx_django_setup
+- name: Check if Package is installed
+  command: dpkg-query -l nginx
+  register: is_installed
+  failed_when: is_installed.rc > 1
+  changed_when: no
+
+- name: Install nginx
+  apt: name=nginx state=present force=yes
+  when: is_installed.rc != 0
+
+- name: stop nginx
+  service: "name=nginx state=stopped"
+
+- name: copy nginx config of project
+  template: "src=nginx.j2 dest={{nginx_conf_dir}}/{{project_name}}.conf"
+
+- name: copy nginx conf from sites-available to sites-enabled
+  file: "src={{nginx_conf_dir}}/{{project_name}}.conf dest={{nginx_sites_dir}}/{{project_name}}.conf state=link"
+
+- name: create project log directory
+  file: "path=/home/{{project_name}}/logs state=directory"
+
+- name: start nginx
+  service: "name=nginx state=started"

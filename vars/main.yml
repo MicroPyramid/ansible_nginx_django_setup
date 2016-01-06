@@ -1,2 +1,7 @@
 ---
-# vars file for nginx_django_setup
+# vars file for setup-nginx
+nginx_dir: "/etc/nginx"
+nginx_conf_dir: "{{nginx_dir}}/sites-available"
+nginx_sites_dir: "{{nginx_dir}}/sites-enabled"
+nginx_access_log: "/home/{{project_name}}/logs/access.log"
+nginx_error_log: "/home/{{project_name}}/logs/error.log"
