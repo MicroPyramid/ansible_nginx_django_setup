@@ -11,11 +11,11 @@ Pre-created Django project over Ubuntu server.
 Role Variables
 --------------
 
-nginx_dir: "/etc/nginx"
-nginx_conf_dir: "{{nginx_dir}}/sites-available"
-nginx_sites_dir: "{{nginx_dir}}/sites-enabled"
-nginx_access_log: "/home/{{project_name}}/logs/access.log"
-nginx_error_log: "/home/{{project_name}}/logs/error.log"
+nginx_dir: "/etc/nginx"  
+nginx_conf_dir: "{{nginx_dir}}/sites-available"  
+nginx_sites_dir: "{{nginx_dir}}/sites-enabled"  
+nginx_access_log: "/home/{{project_name}}/logs/access.log"  
+nginx_error_log: "/home/{{project_name}}/logs/error.log"  
 
 
 Dependencies
